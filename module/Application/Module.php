@@ -6,8 +6,10 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\SessionManager;
 use Zend\Session\Container;
+use Zend\Db\ResultSet\ResultSet;
 use Application\Model\Login;
 use Application\Model\LoginTable;
+use Zend\Db\TableGateway\TableGateway;
 
  use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
  use Zend\ModuleManager\Feature\ConfigProviderInterface;
@@ -126,7 +128,7 @@ use Application\Model\LoginTable;
                      return $table;
                  },
                  'LoginTableGateway' => function ($sm) {
-                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                     $dbAdapter = $sm->get('productionDB');
                      $resultSetPrototype = new ResultSet();
                      $resultSetPrototype->setArrayObjectPrototype(new Login());
                      return new TableGateway('p_user_detail', $dbAdapter, null, $resultSetPrototype);

@@ -268,17 +268,19 @@
       $qualityClass = 'red';
      else if(($project['effortVariance'] >1) && ($project['effortVariance'] <4))
       $qualityClass = 'amber';
-     else
+     else 
      $qualityClass = 'green';
     ?>
-     <td class=<?= $qualityClass;?> ><?php echo $this->escapeHtml($project['effortVariance']);?></td>
+     <td class=<?= $qualityClass;?> ><?php echo $this->escapeHtml(
+    $project['effortVariance']);?></td>
      <td><?php echo $this->escapeHtml(0);?></td>
-    <td><?php echo $this->escapeHtml(0);?></td>
-     <td><?php echo $this->escapeHtml(0);?></td>
+    <td><?php echo $this->escapeHtml(ceil($project['totalConsumeHrs']-$project['totalCurrentMnthConsumeHrs']));?></td>
+     <td><?php echo $this->escapeHtml(ceil($project['totalCurrentMnthConsumeHrs']));?></td>
+     
      <td><?php echo $this->escapeHtml($project['estimatedHours']);?></td>
-     <td><?php echo $this->escapeHtml($project['totalConsumeHrs']);?></td>
+     <td><?php echo $this->escapeHtml(ceil($project['totalConsumeHrs']));?></td>
      <td><?php echo $this->escapeHtml(100-($project['percentRemain']));?></td>  
-      <td><?php echo $this->escapeHtml(0);?></td>
+      <td><?php echo $this->escapeHtml($project['hoursNeedToFinish']);?></td>
      <td><?php echo $this->escapeHtml($project['completionDate']);?></td>
      <td><?php echo $this->escapeHtml($project['comment']);?></td>
      

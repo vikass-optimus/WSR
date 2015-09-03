@@ -42,8 +42,7 @@ public $hoursNeed_toFinish;
          $this->project_id = (isset($data['project']['id'])) ? $data['project']['id'] : null;
          $this->assigneeId  = (isset($data['assigned_to']['id']))  ? $data['assigned_to']['id']  : null;
         $this->assigneeName  = (isset($data['assigned_to']['name']))  ? $data['assigned_to']['name']  : null;
-
-         $this->priority_id     = (isset($data['priority']['id']))     ? $data['priority']['id']     : null;
+        $this->priority_id     = (isset($data['priority']['id']))     ? $data['priority']['id']     : null;
          $this->parent_id = (isset($data['parent']['id'])) ? $data['parent']['id'] : null;
          $this->author_id  = (isset($data['author']['id']))  ? $data['author']['id']  : null;
         $this->author_name  = (isset($data['author']['name']))  ? $data['author']['name']  : null;

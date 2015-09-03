@@ -57,6 +57,7 @@ namespace Redmine\Model;
              'parent_id'  => $issue->parent_id,
              'author_id' => $issue->author_id,
              'author_name' => $issue->author_name,
+             'remain_effort_to_completion' => $issue->hoursNeed_toFinish,
 
 
          );

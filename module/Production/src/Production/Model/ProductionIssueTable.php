@@ -55,7 +55,7 @@ namespace Production\Model;
              //'r_issue_created_by' => $issue->author_id,
              'r_author_name' => $issue->author_name,
              'r_user_name'  => $issue->user_name,
-  
+              'r_hours_needed_to_finish' =>$issue->remain_effort_to_completion,
 
          );
        if ($this->getIssueDetail($issue->issue_id)) 

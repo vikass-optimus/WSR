@@ -21,7 +21,7 @@ public $parent_id;
 public $author_id;
 public $author_name;
 public $user_name;
-
+public $remain_effort_to_completion;
 
 
      public function exchangeArray($data)
@@ -45,6 +45,7 @@ public $user_name;
          //$this->author_id  = (isset($data['author_id']))  ? $data['author_id']  : 0;
         $this->author_name  = (isset($data['author_name']))  ? $data['author_name']  : null;
        $this->user_name  = (isset($data['user_name']))  ? $data['user_name']  : null;
+    $this->remain_effort_to_completion  = (isset($data['remain_effort_to_completion']))  ? $data['remain_effort_to_completion']  : 0;
 
      }
 

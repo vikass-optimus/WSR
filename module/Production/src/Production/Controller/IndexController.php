@@ -70,7 +70,6 @@ $adapter = $this->getServiceLocator()->get('stagingDB');
 $query = "SELECT * FROM issue";
 
  $statement = $adapter->createStatement($query);
- 
 $result = $statement->execute();
 
 if ($result instanceof ResultInterface && $result->isQueryResult()) 

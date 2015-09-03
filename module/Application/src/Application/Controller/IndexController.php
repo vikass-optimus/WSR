@@ -10,7 +10,8 @@ use Application\Model\Login;
 use Application\Model\LoginTable;
 
 class IndexController extends AbstractActionController
-{
+{    
+     protected $LoginTable;
     public function indexAction()
     { 
           $form = new LoginForm();
@@ -18,25 +19,29 @@ class IndexController extends AbstractActionController
            $request = $this->getServiceLocator()->get('request');
            if ($request->isPost()) 
            {
-            $login = new Login();
-            $inputfilter = $login->getInputFilter();
-            $form->setInputFilter($inputfilter);
-            $data = $request->getPost()->toArray();
-            echo "<pre>";print_r($data);die;
-            $a = $form->setData($data);
-          }
-            //echo "<pre>";print_r($a);die;
-         //if ($form->isValid()) {
-          //echo "vikas";die;
-          // $loginTable = new LoginTable();
-          // $data=$login->exchangeArray($form->getData());
-          // echo "<pre>";print_r($data);die;
-          // $loginTable->getUser(array('p_user_email_id' => $data['useremail']));
-       // }
-        //return $this->renderView(array('form' => $form));
-     
+             $data = $request->getPost()->toArray();
+            $form->setData($data);
+          if ($form->isValid()) 
+          {
+            $userTable = $this->getLoginTable()->getLoginUser();
+                   
+
+       }
+        
+      }
           return array('form' => $form);
 
     }
+
+    public function getLoginTable()
+     { 
+        if (!$this->LoginTable) {
+             $sm = $this->getServiceLocator();
+             $this->loginTable = $sm->get('Application\Model\LoginTable');
+         }
+        
+        
+         return $this->loginTable;
+     }
 
 }

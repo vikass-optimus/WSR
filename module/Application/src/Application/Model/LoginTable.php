@@ -2,6 +2,11 @@
 namespace Application\Model;
 
  use Zend\Db\TableGateway\TableGateway;
+ use Zend\Db\Sql\Sql;
+ use Zend\Db\Adapter\Adapter;
+ use Zend\Db\Sql\Select;
+ use Zend\Server\Method\Prototype;
+ use Zend\Db\Sql\Expression;
 
  class LoginTable
  {
@@ -12,22 +17,30 @@ namespace Application\Model;
      {
          $this->tableGateway = $tableGateway;
      }
+    public function getLoginUser() {
+    
+        
+        $select = new Select(self::TABLE_NAME);
+        $columns = array(
+            'emailId'     =>  'p_user_email_id',
+             'password'        =>  'p_user_password',
+        );
+        $select->columns($columns);
+      
+        $sql = new Sql($this->tableGateway->getAdapter());
+        $db = $this->tableGateway->getAdapter()->getDriver()->getConnection()->getResource();
 
-     public function fetchAll()
-     {
-         $resultSet = $this->tableGateway->select();
-         return $resultSet;
-     }
+        return $this->getSqlContent($db, $sql, $select);
+    }
+    
 
-   
 
-    public function getUser($where = array()) {
-        $row = $this->tableGateway->select($where)->current();
-        if (!$row) {
-            return null;
-        }
-        return $row;
+      protected function getSqlContent($db, $sql, $select) 
+      {
+        $stmt = $db->query($sql->getSqlStringForSqlObject($select));
+          //echo "<pre>";print_r($stmt);die;
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $result;
     }
 
- }
- ?>
+}
